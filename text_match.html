@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Match Tester</title>
+    <script src="text_match.js"></script>
+</head>
+
+<body>
+    <div>
+        Input:
+        <br />
+        <textarea id="input" cols="120" rows="20" oninput="update()"></textarea>
+    </div>
+    <div>
+        Output
+        <br />
+        <textarea id="output" cols="120" rows="20" readonly></textarea>
+    </div>
+
+    <script>
+        var input = document.getElementById('input');
+        var output = document.getElementById('output');
+
+        function update() {
+            let matcher = new TextMatcher(input.value);
+            if (matcher.errors.length > 0) {
+                output.value = matcher.errors.reduce((res, val) => res += val + '\n', '');
+            } else {
+                output.value = 'Regex: ' + matcher.regex + '\n\n' + matcher.tokens;
+            }
+        }
+    </script>
+</body>
+
+</html>

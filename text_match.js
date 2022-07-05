@@ -1,12 +1,14 @@
 class Functions {
-    static any = 'any';
-    static followed_by = 'followed-by';
-    static not_followed_by = 'not-followed-by';
-    static optional = 'optional';
+    static zero_or_more = 'any';
+    static zero_or_one = 'optional';
+    static one_or_more = 'some';
+
     static or = 'or';
-    static preceded_by = 'preceded-by';
-    static not_preceded_by = 'not-preceded-by';
-    static some = 'some';
+
+    static lookahead = 'followed-by';
+    static negative_lookahead = 'not-followed-by';
+    static lookbehind = 'preceded-by';
+    static negative_lookbehind = 'not-preceded-by';
 
     static std_line_start = 'line-start';
     static std_line_end = 'line-end';
@@ -50,22 +52,22 @@ class TextMatcher {
             prop = array[0].value;
         }
         switch (prop) {
-            case Functions.any:
-            case Functions.optional:
             case Functions.or:
-            case Functions.some:
+            case Functions.zero_or_more:
+            case Functions.one_or_more:
+            case Functions.zero_or_one:
                 val += '(?:';
                 break;
-            case Functions.followed_by:
+            case Functions.lookahead:
                 val += '(?=';
                 break;
-            case Functions.not_followed_by:
+            case Functions.negative_lookahead:
                 val += '(?!';
                 break;
-            case Functions.preceded_by:
+            case Functions.lookbehind:
                 val += '(?<=';
                 break;
-            case Functions.not_preceded_by:
+            case Functions.negative_lookbehind:
                 val += '(?<!';
                 break;
         }
@@ -87,23 +89,23 @@ class TextMatcher {
             }
         }
         switch (prop) {
-            case Functions.followed_by:
-            case Functions.not_followed_by:
-            case Functions.preceded_by:
-            case Functions.not_preceded_by:
+            case Functions.lookahead:
+            case Functions.negative_lookahead:
+            case Functions.lookbehind:
+            case Functions.negative_lookbehind:
                 val += ')';
-                break;
-            case Functions.any:
-                val += ')*';
-                break;
-            case Functions.optional:
-                val += ')?';
                 break;
             case Functions.or:
                 val += ')';
                 break;
-            case Functions.some:
+            case Functions.zero_or_more:
+                val += ')*';
+                break;
+            case Functions.one_or_more:
                 val += ')+';
+                break;
+            case Functions.zero_or_one:
+                val += ')?';
                 break;
         }
         return val;

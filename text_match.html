@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -23,11 +24,7 @@
 
         function update() {
             let matcher = new TextMatcher(input.value);
-            if (matcher.errors.length > 0) {
-                output.value = matcher.errors.reduce((res, val) => res += val + '\n', '');
-            } else {
-                output.value = 'Regex: ' + matcher.regex + '\n\n' + matcher.tokens;
-            }
+            output.value = matcher.debug;
         }
     </script>
 </body>

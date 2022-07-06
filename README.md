@@ -38,6 +38,32 @@ Text matching and replacement.
 
 ---
 
+## Todo
+
+* Character class
+  * Normal
+  * Negated
+  * Range
+  * Subtraction
+  * Intersection
+  * Shorthand
+    * Digits
+    * Word character
+    * Whitespace
+    * Negated
+* Word boundary and negated
+* Capture group
+  * Reference
+* Comment
+* Unicode
+* Atomic grouping
+* Possessive quantifier
+* Conditional
+* Balancing/recursion
+* Named patterns and references
+
+---
+
 ## Old Notes
 
 ### Pattern Commands
